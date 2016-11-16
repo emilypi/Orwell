@@ -26,6 +26,9 @@ def loop():
                 continue
             raise e
 
+        finally:
+            orwell.disconnect()
+
 def main():
     t = Thread(target=loop)
     t.daemon = True

@@ -27,6 +27,10 @@ class Orwell:
         time.sleep(2)
         self.msg("JOIN %s\n" % channel)
 
+    def disconnect(self):
+        self.msg("QUIT Orwell rides her bike into the sunset...\n")
+        self.irc.close()
+
 
     def msg(self, msg):
         self.irc.send(bytes(msg, 'utf-8'))
