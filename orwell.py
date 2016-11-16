@@ -1,8 +1,11 @@
 import socket
 import ssl
 import time
+import logging
 
 class Orwell:
+
+    connected = None
 
     def __init__(self):
         self.irc = socket.socket()
@@ -12,12 +15,16 @@ class Orwell:
         self.irc.send(bytes("PRIVMSG %s %s\n" % (chan, msg), 'utf-8'))
 
     def connect(self, server, channel, nick, port, password):
-        print("connecting to: " + server)
+        logging.info("Connecting to:\t%s\n" % server)
+
         self.irc.connect((server, port))
         self.irc = ssl.wrap_socket(self.irc)
         self.on_connect(server, channel, nick, port, password)
 
+        logging.info("Successful connection!")
+
     def on_connect(self, server, channel, nick, port, password):
+        self.connected = True
         if password is not "":
             self.msg("PASS %s\n" % password)
 
@@ -29,7 +36,11 @@ class Orwell:
 
     def disconnect(self):
         self.msg("QUIT Orwell rides her bike into the sunset...\n")
+        self.irc.detach()
         self.irc.close()
+        self.connected = False
+
+        logging.info("Closing Orwell connection...")
 
 
     def msg(self, msg):

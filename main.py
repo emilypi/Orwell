@@ -1,6 +1,8 @@
-from orwell_irc import *
+from orwell import *
 from threading import Thread
 import time
+import logging
+from logging.config import fileConfig
 
 channel = "#wetfish"
 server = "irc.wetfish.net"
@@ -13,7 +15,7 @@ def loop():
     orwell = Orwell()
     orwell.connect(server, channel, nick, port, password)
 
-    while True:
+    while orwell.connected:
         try:
             text = orwell.get_text()
             print(text)
@@ -25,18 +27,16 @@ def loop():
                 time.sleep(5)
                 orwell.msg("JOIN %s\n" % channel)
 
-
         except socket.error as e:
-            if str(e) == "[Errno 35] Resource temporarily unavailable":
-                time.sleep(0)
-                continue
-
             raise e
 
-    orwell.disconnect()
-    return
+        logging.info("All cleaned up!")
 
 def main():
+    fileConfig('resources/logging_config.ini')
+    logger = logging.getLogger(__name__)
+    logger.info('Started Orwell...')
+
     loop()
 
 if __name__ == '__main__':
