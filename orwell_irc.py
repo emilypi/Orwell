@@ -36,6 +36,6 @@ class Orwell:
         text = self.irc.recv(2048).decode('utf-8')  # receive the text
 
         if text.find('PING') != -1:
-            self.irc.send(bytes('PONG %s\r\n' % text.split()[1], 'utf-8'))
+            self.msg('PONG %s\r\n' % text.split()[1])
 
         return text
