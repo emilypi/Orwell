@@ -1,14 +1,12 @@
-from orwell import *
-from threading import Thread
-import time
-import logging
-from logging.config import fileConfig
+from modules.Orwell import *
+from modules.Logger import *
 
-channel = "#wetfish"
+channel = "#bots"
 server = "irc.wetfish.net"
 nick = "Orwell"
 port = 6697
 password = ""
+
 
 def loop():
 
@@ -30,13 +28,8 @@ def loop():
         except socket.error as e:
             raise e
 
-        logging.info("All cleaned up!")
 
 def main():
-    fileConfig('resources/logging_config.ini')
-    logger = logging.getLogger(__name__)
-    logger.info('Started Orwell...')
-
     loop()
 
 if __name__ == '__main__':
