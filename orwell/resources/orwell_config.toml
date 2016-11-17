@@ -1,0 +1,13 @@
+# This is a TOML document.
+title = "Orwell Configuration"
+
+[irc]
+server = "irc.wetfish.net"
+nick = "Orwell"
+port = 6697
+password = ""
+channels = ["#bots"]
+
+[database]
+
+[api]

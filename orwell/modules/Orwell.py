@@ -1,10 +1,9 @@
 import socket
 import ssl
 import time
-import json
+import toml
 from orwell.modules.Error import *
 from orwell.modules.Logger import *
-
 
 class Orwell:
 
@@ -63,12 +62,12 @@ class Orwell:
 
         return text
 
-    def unpack_config(self):
+    @staticmethod
+    def unpack_config():
         try:
-            with open('orwell/resources/orwell_config.json') as f:
-                config = json.load(f)
+            with open('orwell/resources/orwell_config.toml') as f:
+                config = toml.loads(f.read())
             return config['irc']
         except FileError as e:
-            self.logger.warn(e("Malformed Orwell JSON!"))
-            raise e
+            raise e("Malformed Orwell JSON!")
 

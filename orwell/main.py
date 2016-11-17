@@ -1,6 +1,7 @@
 from orwell.modules.Orwell import *
 from orwell.modules.Error import *
 
+
 def main():
     try:
         orwell = Orwell()

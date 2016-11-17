@@ -7,11 +7,11 @@ Classes:
     FileError() extending Error() - file I/O error handler
 
 """
-class Error(Exception):
+class BaseError(Exception):
     pass
 
-class SocketError(Error):
+class SocketError(BaseError):
     pass
 
-class FileError(Error):
+class FileError(BaseError):
     pass

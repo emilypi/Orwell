@@ -1,6 +1,6 @@
 import logging
 from logging.config import fileConfig
-from orwell.modules.Error import *
+
 
 class Logger:
 
