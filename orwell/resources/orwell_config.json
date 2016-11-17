@@ -1,0 +1,16 @@
+{
+
+  "irc":{
+    "server": "irc.wetfish.net",
+    "nick": "Orwell",
+    "port": 6697,
+    "password": "",
+    "channels": [
+      "#wetfish"
+    ]
+  },
+
+  "mysql":{},
+  "api":{}
+
+}
