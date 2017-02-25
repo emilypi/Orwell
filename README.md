@@ -1,3 +1,3 @@
 # Orwell
 
-The wetfish pybot for wetfish things.
+Case study for Asyncio
